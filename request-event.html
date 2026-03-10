@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Event Request</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="panel">
+
+<h2>Pastor / Event Coordinator Login</h2>
+
+<input id="user" placeholder="Username">
+<input id="pass" type="password" placeholder="Password">
+
+<br>
+
+<button class="goldButton" onclick="login()">Login</button>
+
+</div>
+
+<div id="eventForm" class="panel" style="display:none">
+
+<h2>Request Event</h2>
+
+<input id="date" placeholder="Date"><br>
+<input id="event" placeholder="Event Type"><br>
+
+<textarea id="details" placeholder="Event Details"></textarea><br>
+
+<input id="church" placeholder="Host Church"><br>
+
+<input id="invite" placeholder="Invitation Image URL"><br>
+
+<button class="goldButton" onclick="submitRequest()">
+
+Submit Request
+
+</button>
+
+</div>
+
+<script>
+
+function login(){
+
+let users = JSON.parse(localStorage.getItem("users")||"[]")
+
+let u = users.find(x=>x.username==user.value && x.password==pass.value)
+
+if(u && (u.role=="pastor" || u.role=="admin")){
+
+eventForm.style.display="block"
+
+}else{
+
+alert("Access denied")
+
+}
+
+}
+
+function submitRequest(){
+
+let requests = JSON.parse(localStorage.getItem("eventRequests")||"[]")
+
+requests.push({
+
+date:date.value,
+event:event.value,
+details:details.value,
+church:church.value,
+invite:invite.value
+
+})
+
+localStorage.setItem("eventRequests",JSON.stringify(requests))
+
+alert("Request sent to Admin")
+
+}
+
+</script>
+
+</body>
+</html>
