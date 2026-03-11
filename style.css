@@ -1,201 +1,48 @@
 body{
-
-background:linear-gradient(180deg,#001c44,#002d73);
-
-font-family:Segoe UI;
-
+background:#002147;
 color:white;
-
+font-family:Arial;
 text-align:center;
-
-margin:0;
-
-padding:30px;
-
+padding:40px;
 }
 
-/* HEADER */
-
-.header{
-
-position:relative;
-
-height:140px;
-
+h1{
+color:gold;
 }
 
-.logo-left{
-
-position:absolute;
-left:10px;
-top:50px;
-width:120px;
-
-}
-
-.logo-right{
-
-position:absolute;
-right:10px;
-top:50px;
-width:120px;
-
-}
-
-.logo-center{
-
-width:160px;
-
-}
-
-/* TITLES */
-
-.titleBlock h1{
-
-color:#FFD700;
-
-margin-bottom:5px;
-
-}
-
-.titleBlock h2{
-
-color:#FFD700;
-
-font-weight:normal;
-
-font-size:16px;
-
-}
-
-/* NAVIGATION */
-
-.navBar{
-
-margin:25px;
-
-}
-
-.goldButton{
-
-background:linear-gradient(145deg,#FFD700,#c8a500);
-
-border:none;
-
-color:black;
-
+.nav button{
+background:gold;
 padding:12px 22px;
-
-margin:8px;
-
+margin:6px;
+border:none;
 font-weight:bold;
-
-border-radius:8px;
-
 cursor:pointer;
-
-transition:all .25s ease;
-
-box-shadow:0 4px 10px rgba(0,0,0,.3);
-
+border-radius:6px;
 }
 
-.goldButton:hover{
-
-transform:translateY(-2px);
-
-box-shadow:0 6px 14px rgba(0,0,0,.5);
-
-background:linear-gradient(145deg,#ffe44d,#d1a900);
-
+.hidden{
+display:none;
 }
 
-/* CALENDAR PANEL */
-
-.calendarPanel{
-
-width:95%;
-
-margin:auto;
-
-background:rgba(255,255,255,.05);
-
-backdrop-filter:blur(8px);
-
-padding:25px;
-
-border-radius:10px;
-
-box-shadow:0 6px 20px rgba(0,0,0,.4);
-
+input{
+padding:8px;
+margin:5px;
 }
-
-/* TABLE */
 
 table{
-
-width:100%;
-
+width:90%;
+margin:auto;
 border-collapse:collapse;
-
+margin-top:30px;
 }
 
 th{
-
-background:#8b0000;
-
-color:#FFD700;
-
-padding:12px;
-
+background:red;
+color:gold;
+padding:10px;
 }
 
 td{
-
-background:#555;
-
-padding:10px;
-
-color:white;
-
-}
-
-tr:hover td{
-
-background:#666;
-
-}
-
-/* INPUT FIELDS */
-
-input, textarea, select{
-
-width:300px;
-
+background:#444;
 padding:8px;
-
-margin:6px;
-
-border-radius:5px;
-
-border:none;
-
-}
-
-/* PANELS */
-
-.panel{
-
-background:rgba(255,255,255,.05);
-
-padding:25px;
-
-border-radius:10px;
-
-width:450px;
-
-margin:auto;
-
-box-shadow:0 6px 18px rgba(0,0,0,.4);
-
 }
