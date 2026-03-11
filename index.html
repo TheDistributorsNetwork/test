@@ -2,51 +2,27 @@
 <html>
 
 <head>
-
-<title>Message Believer's Network Calendar</title>
-
+<meta charset="UTF-8">
+<title>Message Believers Network Calendar</title>
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<div class="header">
+<h1>Message Believers Network Calendar</h1>
+<h3>By The Distributor</h3>
 
-<img src="logo-left.png" class="logo-left">
-<img src="logo-center.png" class="logo-center">
-<img src="logo-right.png" class="logo-right">
+<div class="nav">
 
-</div>
-
-<div class="titleBlock">
-
-<h1>Message Believer's Network Calendar</h1>
-<h2>By The Distributor</h2>
+<button id="btnCalendar">Calendar</button>
+<button id="btnMembers">Members</button>
+<button id="btnRequest">Request Event</button>
 
 </div>
 
-<div class="navBar">
+<div id="calendarSection">
 
-<button class="goldButton" onclick="location.href='request-event.html'">
-Request To Add Event
-</button>
-
-<button class="goldButton" onclick="openSupport()">
-Support Accounts
-</button>
-
-<button class="goldButton" onclick="openLive()">
-Live Events Accounts
-</button>
-
-<button class="goldButton" onclick="location.href='members.html'">
-Members
-</button>
-
-</div>
-
-<div class="calendarPanel">
+<h2>Upcoming Events</h2>
 
 <table id="calendarTable">
 
@@ -59,6 +35,61 @@ Members
 </tr>
 
 </table>
+
+</div>
+
+<div id="membersSection" class="hidden">
+
+<h2>Members Login</h2>
+
+<input id="username" placeholder="Username">
+<input id="password" type="password" placeholder="Password">
+
+<button id="loginBtn">Login</button>
+
+<div id="adminPanel" class="hidden">
+
+<h3>Create User</h3>
+
+<input id="newUser" placeholder="Username">
+<input id="newPass" placeholder="Password">
+
+<select id="role">
+
+<option value="member">Member</option>
+<option value="pastor">Pastor</option>
+<option value="admin">Admin</option>
+
+</select>
+
+<button id="createUserBtn">Create User</button>
+
+</div>
+
+</div>
+
+<div id="requestSection" class="hidden">
+
+<h2>Pastor Login</h2>
+
+<input id="pUser" placeholder="Username">
+<input id="pPass" type="password" placeholder="Password">
+
+<button id="pastorLoginBtn">Login</button>
+
+<div id="requestForm" class="hidden">
+
+<h3>Submit Event Request</h3>
+
+<input id="date" placeholder="Date"><br>
+<input id="event" placeholder="Event"><br>
+<input id="details" placeholder="Details"><br>
+<input id="church" placeholder="Host Church"><br>
+<input id="invite" placeholder="Invitation Link"><br>
+
+<button id="submitEventBtn">Submit Event</button>
+
+</div>
 
 </div>
 
