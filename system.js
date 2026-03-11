@@ -1,11 +1,12 @@
-/* =================================================
+/* ===============================================
    MESSAGE BELIEVER'S NETWORK CALENDAR SYSTEM
-   ================================================= */
+   GitHub Compatible Version
+=============================================== */
 
 
-/* =================================================
-   CREATE DEFAULT ADMIN IF NONE EXISTS
-   ================================================= */
+/* ===============================================
+   DEFAULT ADMIN
+=============================================== */
 
 function initialiseSystem(){
 
@@ -29,17 +30,16 @@ initialiseSystem()
 
 
 
-/* =================================================
+/* ===============================================
    LOAD CALENDAR EVENTS
-   ================================================= */
+=============================================== */
 
 function loadCalendar(){
 
-let events = JSON.parse(localStorage.getItem("approvedEvents") || "[]")
-
 let table = document.getElementById("calendarTable")
-
 if(!table) return
+
+let events = JSON.parse(localStorage.getItem("approvedEvents") || "[]")
 
 events.forEach(e=>{
 
@@ -51,7 +51,6 @@ row.insertCell(2).innerText = e.details
 row.insertCell(3).innerText = e.church
 
 let link = document.createElement("a")
-
 link.href = e.invite
 link.innerText = "View"
 link.target = "_blank"
@@ -64,42 +63,19 @@ row.insertCell(4).appendChild(link)
 
 
 
-/* =================================================
-   SUPPORT LINKS
-   ================================================= */
-
-function openSupport(){
-
-alert(
-"Support Accounts\n\nWhatsApp\nFacebook\nTikTok"
-)
-
-}
-
-
-
-/* =================================================
-   LIVE STREAM LINKS
-   ================================================= */
-
-function openLive(){
-
-alert(
-"Live Streaming\n\nYouTube\nPodbean\nTikTok\nFacebook"
-)
-
-}
-
-
-
-/* =================================================
-   LOGIN SYSTEM
-   ================================================= */
+/* ===============================================
+   MEMBER LOGIN
+=============================================== */
 
 function loginUser(){
 
-let username = document.getElementById("username").value
-let password = document.getElementById("password").value
+let usernameField = document.getElementById("username")
+let passwordField = document.getElementById("password")
+
+if(!usernameField || !passwordField) return
+
+let username = usernameField.value
+let password = passwordField.value
 
 let users = JSON.parse(localStorage.getItem("users") || "[]")
 
@@ -117,13 +93,13 @@ return
 
 if(user.role === "admin"){
 
-document.getElementById("adminPanel").style.display="block"
+let panel = document.getElementById("adminPanel")
+
+if(panel) panel.style.display="block"
 
 loadRequests()
 
-}
-
-else{
+}else{
 
 alert("Login successful")
 
@@ -133,9 +109,9 @@ alert("Login successful")
 
 
 
-/* =================================================
-   CREATE USER (ADMIN ONLY)
-   ================================================= */
+/* ===============================================
+   CREATE USER
+=============================================== */
 
 function createUser(){
 
@@ -153,111 +129,15 @@ role:role
 
 localStorage.setItem("users", JSON.stringify(users))
 
-alert("User created successfully")
+alert("User created")
 
 }
 
 
 
-/* =================================================
-   LOAD EVENT REQUESTS
-   ================================================= */
-
-function loadRequests(){
-
-let requests = JSON.parse(localStorage.getItem("eventRequests") || "[]")
-
-let table = document.getElementById("requestsTable")
-
-if(!table) return
-
-table.innerHTML = `
-<tr>
-<th>Date</th>
-<th>Event</th>
-<th>Approve</th>
-</tr>
-`
-
-requests.forEach((r,i)=>{
-
-let row = table.insertRow()
-
-row.insertCell(0).innerText = r.date
-row.insertCell(1).innerText = r.event
-
-let btn = document.createElement("button")
-
-btn.innerText="Approve"
-btn.className="goldButton"
-
-btn.onclick=function(){approveEvent(i)}
-
-row.insertCell(2).appendChild(btn)
-
-})
-
-}
-
-
-
-/* =================================================
-   APPROVE EVENT
-   ================================================= */
-
-function approveEvent(index){
-
-let requests = JSON.parse(localStorage.getItem("eventRequests") || "[]")
-let events = JSON.parse(localStorage.getItem("approvedEvents") || "[]")
-
-events.push(requests[index])
-
-requests.splice(index,1)
-
-localStorage.setItem("approvedEvents", JSON.stringify(events))
-localStorage.setItem("eventRequests", JSON.stringify(requests))
-
-alert("Event Approved")
-
-location.reload()
-
-}
-
-
-
-/* =================================================
-   SUBMIT EVENT REQUEST
-   ================================================= */
-
-function submitRequest(){
-
-let date = document.getElementById("date").value
-let event = document.getElementById("event").value
-let details = document.getElementById("details").value
-let church = document.getElementById("church").value
-let invite = document.getElementById("invite").value
-
-let requests = JSON.parse(localStorage.getItem("eventRequests") || "[]")
-
-requests.push({
-date:date,
-event:event,
-details:details,
-church:church,
-invite:invite
-})
-
-localStorage.setItem("eventRequests", JSON.stringify(requests))
-
-alert("Event request sent for approval")
-
-}
-
-
-
-/* =================================================
+/* ===============================================
    PASTOR LOGIN
-   ================================================= */
+=============================================== */
 
 function pastorLogin(){
 
@@ -284,7 +164,7 @@ document.getElementById("eventForm").style.display="block"
 
 }else{
 
-alert("You do not have permission to request events")
+alert("You do not have permission")
 
 }
 
@@ -292,8 +172,134 @@ alert("You do not have permission to request events")
 
 
 
-/* =================================================
-   RUN CALENDAR LOAD
-   ================================================= */
+/* ===============================================
+   SUBMIT EVENT REQUEST
+=============================================== */
+
+function submitRequest(){
+
+let requests = JSON.parse(localStorage.getItem("eventRequests") || "[]")
+
+let newRequest = {
+
+date:document.getElementById("date").value,
+event:document.getElementById("event").value,
+details:document.getElementById("details").value,
+church:document.getElementById("church").value,
+invite:document.getElementById("invite").value
+
+}
+
+requests.push(newRequest)
+
+localStorage.setItem("eventRequests", JSON.stringify(requests))
+
+alert("Request submitted")
+
+}
+
+
+
+/* ===============================================
+   LOAD EVENT REQUESTS
+=============================================== */
+
+function loadRequests(){
+
+let table = document.getElementById("requestsTable")
+if(!table) return
+
+let requests = JSON.parse(localStorage.getItem("eventRequests") || "[]")
+
+table.innerHTML = `
+<tr>
+<th>Date</th>
+<th>Event</th>
+<th>Approve</th>
+</tr>
+`
+
+requests.forEach((r,i)=>{
+
+let row = table.insertRow()
+
+row.insertCell(0).innerText = r.date
+row.insertCell(1).innerText = r.event
+
+let btn = document.createElement("button")
+btn.innerText = "Approve"
+btn.className = "goldButton"
+
+btn.onclick = function(){ approveEvent(i) }
+
+row.insertCell(2).appendChild(btn)
+
+})
+
+}
+
+
+
+/* ===============================================
+   APPROVE EVENT
+=============================================== */
+
+function approveEvent(index){
+
+let requests = JSON.parse(localStorage.getItem("eventRequests") || "[]")
+let events = JSON.parse(localStorage.getItem("approvedEvents") || "[]")
+
+events.push(requests[index])
+
+requests.splice(index,1)
+
+localStorage.setItem("approvedEvents", JSON.stringify(events))
+localStorage.setItem("eventRequests", JSON.stringify(requests))
+
+alert("Event Approved")
+
+location.reload()
+
+}
+
+
+
+/* ===============================================
+   DROPDOWN MENUS
+=============================================== */
+
+function toggleSupport(){
+
+let menu = document.getElementById("supportMenu")
+
+if(menu.style.display === "block"){
+menu.style.display = "none"
+}else{
+menu.style.display = "block"
+}
+
+}
+
+function toggleLive(){
+
+let menu = document.getElementById("liveMenu")
+
+if(menu.style.display === "block"){
+menu.style.display = "none"
+}else{
+menu.style.display = "block"
+}
+
+}
+
+
+
+/* ===============================================
+   PAGE LOAD
+=============================================== */
+
+document.addEventListener("DOMContentLoaded", function(){
 
 loadCalendar()
+
+})
